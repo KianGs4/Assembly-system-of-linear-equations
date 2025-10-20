@@ -14,11 +14,6 @@ A project to **solve systems of linear equations** using a mix of **C** and **as
   - [Intel / x86_64 target](#intel--x86_64-target)  
   - [IBM / s390x target](#ibm--s390x-target)  
 - [Usage / Running](#usage--running)  
-- [How it works / Design](#how-it-works--design)  
-- [Tips & Notes](#tips--notes)  
-- [Future Improvements](#future-improvements)  
-- [License & Attribution](#license--attribution)
-
 ---
 
 ## Motivation
@@ -53,16 +48,12 @@ This project gives a hands-on example by implementing linear algebra (solving mu
 ├── x86/
 │   └── … (assembly files, helper routines)
 ├── IBM/
-│   └── … (assembly files, IBM-specific code)
-├── scripts/        # optional: build scripts, helpers
-└── tests/          # optional: test cases, sample inputs
+    └── … (assembly files, IBM-specific code)
 ```
 
 - `main.c`: the entry point, handles input/output, assembling the matrix, invoking the assembly routines  
 - `x86/`: contains assembly routines, maybe support macros, helpers  
 - `IBM/`: contains the s390x-specific code  
-- `scripts/` and `tests/`: utilities and example test programs  
-
 ---
 
 ## Requirements & Dependencies
@@ -133,20 +124,4 @@ Typically, the program will:
 4. optionally verify correctness via comparison against C or known solution  
 
 You can customize input size (number of equations), tolerances, etc., by editing `main.c` or passing arguments (if implemented).
-
----
-
-## How it Works / Design
-
-The core idea is to implement a solver (e.g. Gaussian elimination with partial pivoting) in assembly:
-
-- Represent the matrix and vector in memory, row-major or column-major  
-- Use registers to load, multiply, subtract, divide values  
-- Handle looping, branching, index computation  
-- Be careful about floating point or integer arithmetic (depending on design)  
-- Use consistent calling convention and stack frame so C and assembly interoperate  
-
-The C wrapper manages high-level logic: setting up data, calling assembly functions, and checking results.
-
----
 
